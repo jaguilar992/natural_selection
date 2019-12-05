@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Selección Natural - Simulador</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Selección Natural</h1>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-8 div-mundo">
+          <!-- CANVAS -->
+        </div>
+        <div class="col-md-4 div-controles">
+          <div class="row">
+            <div class="col-md-12">
+              <h2>Controles</h2>
+            </div>
+            <div class="row slider">
+              <div class="col-md-12">
+                <label for="control-">Población Inicial:</label>
+                <div class="col-md-12">
+                  <div class="col-md-8">
+                    <input type="range" name="poblacion_inicial" value="1" min="1" max="100">
+                  </div>
+                  <div class="col-md-4">
+                    <span id="valor_poblacion_inicial"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row slider">
+              <div class="col-md-12">
+                <label for="control-">Producción de alimentos:</label>
+                <div class="col-md-12">
+                  <div class="col-md-8">
+                    <input type="range" name="produccion_alimentos" value="1" min="1" max="200">
+                  </div>
+                  <div class="col-md-4">
+                    <span id="valor_producccion_alimentos"></span>&nbsp<span>u/dia</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" id="buttons">
+              <div class="col-md-12">
+                <div class="col-md-4">
+                  <button class="btn btn-default btn-block" id="button_reiniciar">
+                    Reiniciar
+                  </button>
+                </div>
+                <div class="col-md-4">
+                  <button class="btn btn-default btn-block" id="button_detener">
+                    Pausar
+                  </button>
+                </div>
+                <div class="col-md-4">
+                  <button class="btn btn-primary btn-block" id="button_iniciar">
+                    Iniciar
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="row slider">
+              <div class="col-md-12">
+                <label for="control-">Velocidad de animación</label>
+                <div class="col-md-12">
+                  <div class="col-md-8">
+                    <input type="range" name="velocidad_animacion" value="1" min="1" max="10">
+                  </div>
+                  <div class="col-md-4">
+                    <!-- <span>1:</span>&nbsp; --><span id="valor_velocidad"></span>&nbsp
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/main_controller.js"></script>
+  <script>
+    setInterval(()=>{
+      //location.reload()
+    }, 3000)
+  </script>
+</body>
+</html>
+
