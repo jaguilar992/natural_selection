@@ -1,13 +1,8 @@
-// GLOBALS
-const control_poblacion_inicial = $("input[name='poblacion_inicial']");
-const control_produccion_alimentos = $("input[name='produccion_alimentos']");
-const control_velocidad_animacion = $("input[name='velocidad_animacion']");
-const label_poblacion_inicial = $("#valor_poblacion_inicial")
-const label_produccion_alimentos = $("#valor_producccion_alimentos");
-const label_velocidad_animacion = $("#valor_velocidad");
-const button_iniciar = $("button#button_iniciar");
-const button_detener = $("button#button_detener");
-const button_reiniciar = $("button#button_reiniciar");
+//** Imports
+// <script src="js/globals.js"></script>
+// <script src="js/class_criatura.js"></script>
+// <script src="js/class_poblacion.js"></script>
+// <script src="js/class_mundo.js"></script>
 
 // INICIO
 $(document).ready(()=>{
@@ -32,7 +27,7 @@ control_velocidad_animacion.on("input",function(){
 })
 
 
-// BOTONES
+// EVENTOS DE - BOTONES
 button_iniciar.click(()=>{
   button_iniciar.attr("disabled",true);
   button_reiniciar.attr("disabled",false);
@@ -52,3 +47,20 @@ button_detener.click(()=>{
   button_detener.attr("disabled",true);
   button_iniciar.attr("disabled",false);
 });
+
+
+const a = canvas_width/rejilla_tamano;
+const b = canvas_height/rejilla_tamano;
+var  mundo = new Mundo(a, b, 50, ctx);
+var  pop = new Poblacion(1, mundo);
+mundo.setPoblacion(pop.getPoblacion());
+mundo.crecer_comida();
+mundo.dibujar();
+
+
+jimmy = mundo.poblacion[0]
+var u,v;
+[u,v] = jimmy.getRejilla()
+mundo.marcar(u,v)
+console.log(u,v)
+console.log(jimmy.rango)

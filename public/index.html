@@ -11,7 +11,9 @@
     <div class="row">
       <div class="col-md-12">
         <div class="col-md-8 div-mundo">
-          <!-- CANVAS -->
+          <canvas id="mundo" height="400px" width="700px">
+              
+          </canvas>
         </div>
         <div class="col-md-4 div-controles">
           <div class="row">
@@ -26,7 +28,7 @@
                     <input type="range" name="poblacion_inicial" value="1" min="1" max="100">
                   </div>
                   <div class="col-md-4">
-                    <span id="valor_poblacion_inicial"></span>
+                    <span id="valor_poblacion_inicial"></span>&nbsp;<span>indv.</span>
                   </div>
                 </div>
               </div>
@@ -36,7 +38,7 @@
                 <label for="control-">Producción de alimentos:</label>
                 <div class="col-md-12">
                   <div class="col-md-8">
-                    <input type="range" name="produccion_alimentos" value="1" min="1" max="200">
+                    <input type="range" name="produccion_alimentos" value="1" min="1" max="100">
                   </div>
                   <div class="col-md-4">
                     <span id="valor_producccion_alimentos"></span>&nbsp<span>u/dia</span>
@@ -69,7 +71,7 @@
                 <label for="control-">Velocidad de animación</label>
                 <div class="col-md-12">
                   <div class="col-md-8">
-                    <input type="range" name="velocidad_animacion" value="1" min="1" max="10">
+                    <input type="range" name="velocidad_animacion" value="1" min="1" max="5">
                   </div>
                   <div class="col-md-4">
                     <!-- <span>1:</span>&nbsp; --><span id="valor_velocidad"></span>&nbsp
@@ -83,6 +85,10 @@
     </div>
   </div>
   <script src="js/jquery.min.js"></script>
+  <script src="js/globals.js"></script>
+  <script src="js/class_criatura.js"></script>
+  <script src="js/class_poblacion.js"></script>
+  <script src="js/class_mundo.js"></script>
   <script src="js/main_controller.js"></script>
   <script>
     setInterval(()=>{
