@@ -74,7 +74,7 @@ class Criatura{
 
   //Dev
   marcarAlcance(){
-    alcance = this.getAlcance();
+    var alcance = this.getAlcance();
     alcance.forEach((el)=>{
       var x,y;
       [x,y] = el;
@@ -101,6 +101,10 @@ class Criatura{
       }
     }
     return [encontro_comida, destino[0], destino[1], th];
+  }
+
+  buscarNuevoSitio(){
+    
   }
 
   calcularRuta(grid_x,grid_y){
