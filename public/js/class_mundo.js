@@ -1,3 +1,5 @@
+const zeros = (m, n) => [...Array(n)].map(e => Array(m).fill(0));
+
 class Mundo{
   constructor(w,h, n,ctx){
     this.rejilla_ancho = w // rejillla hrztal
@@ -5,14 +7,14 @@ class Mundo{
     this.ctx=ctx;
     this.comida_cantidad = n
     this.grid = true;
-    this.comida_mapa = Array.from(Array(this.rejilla_ancho), () => new Array(this.rejilla_alto));
+    this.comida_mapa = zeros(this.rejilla_alto, this.rejilla_ancho);
+    this.marcas = zeros(this.rejilla_alto, this.rejilla_ancho);
     this.poblacion = [];
-    this.marcas = Array.from(Array(this.rejilla_ancho), () => new Array(this.rejilla_alto));
   }
 
   crecer_comida(){
     var c=0;
-    this.comida_mapa = Array.from(Array(this.rejilla_ancho), () => new Array(this.rejilla_alto));
+    this.comida_mapa = zeros(this.rejilla_alto, this.rejilla_ancho);
     while (c<this.comida_cantidad)  {
       var x = Math.floor(Math.random() * this.rejilla_ancho);
       var y = Math.floor(Math.random() * this.rejilla_alto);
@@ -40,7 +42,7 @@ class Mundo{
     this.ctx.clearRect(0,0,canvas_width, canvas_height);
   }
 
-  dibujar_rejilla(){
+  dibujarRejilla(){
     for (var i = 0; i < this.rejilla_ancho; i++) {
      for (var j = 0; j < this.rejilla_alto; j++) {
         ctx.fillStyle="#0000000F";
@@ -53,7 +55,7 @@ class Mundo{
     this.poblacion = poblacion;
   }
 
-  dibujar_poblacion(){
+  dibujarPoblacion(){
     for (var i = 0; i < this.poblacion.length; i++) {
       var criatura = this.poblacion[i];
       var x = criatura.x;
@@ -70,11 +72,11 @@ class Mundo{
 
   dibujar(){
     this.clear();
-    if (this.grid) this.dibujar_rejilla();
+    if (this.grid) this.dibujarRejilla();
     // Dev
-    this.dibujar_marcas();
+    this.dibujarMarcas();
     this.dibujar_comida();
-    this.dibujar_poblacion();
+    this.dibujarPoblacion();
   }
 
   hayComida(x,y){
@@ -84,18 +86,22 @@ class Mundo{
   // Dev - Methods
   marcar(x,y, color){
     this.marcas[x][y] = 1;
-    this.dibujar();
+    
   }
   desmarcar(x,y){
     this.marcas[x][y] = 0;
+  }
+
+  desmarcarTodo(){
+    this.marcas = zeros(this.rejilla_alto, this.rejilla_ancho);
     this.dibujar();
   }
 
-  dibujar_marcas(){
+  dibujarMarcas(){
     for (var i = 0; i < this.rejilla_ancho; i++) {
      for (var j = 0; j < this.rejilla_alto; j++) {
         if(this.marcas[i][j]==1){
-          ctx.fillStyle="#FFDD55";
+          ctx.fillStyle="#FFDD55A0";
           ctx.fillRect(i*rejilla_tamano+1,j*rejilla_tamano+1,rejilla_tamano-2,rejilla_tamano-2);
         }
       }

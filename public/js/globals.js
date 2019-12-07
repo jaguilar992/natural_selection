@@ -23,7 +23,7 @@ const comida_tamano = rejilla_tamano/2; // NO MODIFICAR - MODIFICAR GRID_TAMANO
 const grid_border = rejilla_tamano/4;   // NO MODIFICAR - MODIFICAR GRID_TAMANO
 
 const criatura_tamano_min = 8;
-const criatura_tamano_max = 13;
+const criatura_tamano_max = 16;
 const dtamano = criatura_tamano_max - criatura_tamano_min;
 
 const criatura_velocidad_min = 20;
@@ -31,7 +31,7 @@ const criatura_velocidad_max = 100;
 const dvelocidad = criatura_velocidad_min - criatura_velocidad_max;
 
 const criatura_rango_min =  1;
-const criatura_rango_max =  5;
+const criatura_rango_max =  4;
 const drango = criatura_rango_min - criatura_rango_max;
 
 function randrange(a,b){

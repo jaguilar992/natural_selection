@@ -51,16 +51,24 @@ button_detener.click(()=>{
 
 const a = canvas_width/rejilla_tamano;
 const b = canvas_height/rejilla_tamano;
-var  mundo = new Mundo(a, b, 50, ctx);
-var  pop = new Poblacion(1, mundo);
+var  mundo = new Mundo(a, b, 100, ctx);
+var  pop = new Poblacion(100, mundo);
 mundo.setPoblacion(pop.getPoblacion());
 mundo.crecer_comida();
 mundo.dibujar();
 
 
-jimmy = mundo.poblacion[0]
-var u,v;
-[u,v] = jimmy.getRejilla()
-mundo.marcar(u,v)
-console.log(u,v)
-console.log(jimmy.rango)
+// mundo.poblacion.forEach(indv => {
+//   alcance = indv.getAlcance();
+//   alcance.forEach((el)=>{
+//     var x,y;
+//     [x,y] = el;
+//     mundo.marcar(x,y);
+//   });
+// });
+
+mundo.poblacion.forEach(indv => {
+ console.log(indv.buscarComida())
+});
+
+mundo.dibujar()
