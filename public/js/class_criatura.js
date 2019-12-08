@@ -150,9 +150,8 @@ class Criatura{
   animar(t){
     if (this.estado == this.estados["reposo"]){
       // Busqueda de alimento
-      if(this.comidas < 2){
-        var hayComida, angulo, x,y; 
-        [hayComida,angulo,x,y] = this.buscarComida()
+      if(this.comidas<2){
+        var hayComida, angulo, x,y; [hayComida,angulo,x,y] = this.buscarComida()
         if (hayComida){
           this.destino = [x,y];
           this.direccion = angulo;
@@ -166,30 +165,20 @@ class Criatura{
           this.objetivo = this.objetivos["ninguno"];
         }
       }
-    // Movimiento
     }else if (this.estado == this.estados["movimiento"]){
-      var x2,y2, llegoAdestino; [x2,y2] = this.getRejilla();
-      llegoAdestino = (this.destino[0] == x2) && (this.destino[1] == y2);
-      if (this.objetivo == this.objetivos["comida"]){
-        if (llegoAdestino){
-          this.objetivo = this.objetivos["ninguno"];
-          this.estado = this.estados["reposo"];
-          // this.direccion = 0;
+      var x2,y2; [x2,y2] = this.getRejilla();
+      if (this.destino[0] == x2 && this.destino[1] == y2){
+        this.estado = this.estados["reposo"];
+        this.direccion = 0;
+        if (this.objetivo == this.objetivos["comida"]){
           if (this.mundo.hayComida(x2,y2)) {
             this.mundo.comida_mapa[x2][y2] = 0;
             this.comidas+=1;
           }
-        }else{
-          this.darPaso(t);
         }
+        this.objetivo = this.objetivos["ninguno"];
       }else{
-        if (llegoAdestino){
-          this.objetivo = this.objetivos["ninguno"];
-          this.estado = this.estados["reposo"];
-          // this.direccion = 0;
-        }else{
-          this.darPaso(t);
-        }
+        this.darPaso(t);
       }
     }
   }
