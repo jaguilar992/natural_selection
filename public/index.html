@@ -11,7 +11,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="col-md-8 div-mundo">
-          <canvas id="mundo" height="400px" width="700px">
+          <canvas id="mundo" height="500px" width="700px">
               
           </canvas>
         </div>
@@ -38,7 +38,7 @@
                 <label for="control-">Producción de alimentos:</label>
                 <div class="col-md-12">
                   <div class="col-md-8">
-                    <input type="range" name="produccion_alimentos" value="1" min="1" max="100">
+                    <input type="range" name="produccion_alimentos" value="1" min="1" max="100"> 
                   </div>
                   <div class="col-md-4">
                     <span id="valor_producccion_alimentos"></span>&nbsp<span>u/dia</span>
@@ -54,6 +54,7 @@
                   </button>
                 </div>
                 <div class="col-md-4">
+                  <input type="hidden" name="estado_simulacion" value="0">
                   <button class="btn btn-default btn-block" id="button_detener">
                     Pausar
                   </button>
@@ -71,7 +72,7 @@
                 <label for="control-">Velocidad de animación</label>
                 <div class="col-md-12">
                   <div class="col-md-8">
-                    <input type="range" name="velocidad_animacion" value="1" min="1" max="5">
+                    <input type="range" name="velocidad_animacion" value="1" min="1" max="10">
                   </div>
                   <div class="col-md-4">
                     <!-- <span>1:</span>&nbsp; --><span id="valor_velocidad"></span>&nbsp

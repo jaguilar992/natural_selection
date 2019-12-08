@@ -1,5 +1,3 @@
-const zeros = (m, n) => [...Array(n)].map(e => Array(m).fill(0));
-
 class Mundo{
   constructor(w,h, n,ctx){
     this.rejilla_ancho = w // rejillla hrztal
@@ -7,6 +5,7 @@ class Mundo{
     this.ctx=ctx;
     this.comida_cantidad = n
     this.grid = true;
+    this.vision = true;
     this.comida_mapa = zeros(this.rejilla_alto, this.rejilla_ancho);
     this.marcas = zeros(this.rejilla_alto, this.rejilla_ancho);
     this.poblacion = [];
@@ -61,12 +60,22 @@ class Mundo{
       var x = criatura.x;
       var y = criatura.y;
       var t = criatura.tamano;
+      // Cuerpo
       ctx.beginPath();
       ctx.fillStyle = '#FF70A0A0';
       ctx.arc(x,y,t, 0, 2*Math.PI);
       ctx.strokeStyle = "red";
       ctx.fill();
       ctx.stroke();
+      // Destino - Vector
+      var dst = criatura.destino;
+      ctx.beginPath();
+      ctx.moveTo(x,y);
+      ctx.lineTo(dst[0]*rejilla_tamano + grid_border*2 , dst[1]*rejilla_tamano + grid_border*2);
+      ctx.strokeStyle = '#00B8F5';
+      ctx.stroke();
+      // Alcance
+      if (this.vision) criatura.marcarAlcance();
     }
   }
 
@@ -88,6 +97,7 @@ class Mundo{
     this.marcas[x][y] = 1;
     
   }
+  
   desmarcar(x,y){
     this.marcas[x][y] = 0;
   }
