@@ -1,9 +1,11 @@
 class Criatura{
-  constructor(x,y,tamano,velocidad,rango){
+  constructor(x,y,tamano,velocidad,rango, mundo){
     this.x = x;
     this.y = y;
     this.tamano = tamano;
     this.velocidad = velocidad;
+    this.energia = Math.pow(this.tamano -5 ,3)*Math.pow(this.velocidad / 10, 2);
+    this.dieta = Math.ceil(this.energia/30000) + 1;
     this.rango = rango;
     this.direccion = 0; // 0° -> 360°
     this.mundo = mundo;
@@ -150,7 +152,7 @@ class Criatura{
   animar(t){
     if (this.estado == this.estados["reposo"]){
       // Busqueda de alimento
-      if(this.comidas<2){
+      if(this.comidas<this.dieta){
         var hayComida, angulo, x,y; [hayComida,angulo,x,y] = this.buscarComida()
         if (hayComida){
           this.destino = [x,y];
@@ -167,16 +169,17 @@ class Criatura{
       }
     }else if (this.estado == this.estados["movimiento"]){
       var x2,y2; [x2,y2] = this.getRejilla();
-      if (this.destino[0] == x2 && this.destino[1] == y2){
+      var llegoDestino = this.destino[0] == x2 && this.destino[1] == y2;
+      if (llegoDestino){
         this.estado = this.estados["reposo"];
         this.direccion = 0;
         if (this.objetivo == this.objetivos["comida"]){
           if (this.mundo.hayComida(x2,y2)) {
             this.mundo.comida_mapa[x2][y2] = 0;
             this.comidas+=1;
+            this.objetivo = this.objetivos["ninguno"];
           }
         }
-        this.objetivo = this.objetivos["ninguno"];
       }else{
         this.darPaso(t);
       }
@@ -184,11 +187,13 @@ class Criatura{
   }
 
   reproducir () {
-    var nueva = new Criatura(this.x, this.y);
-    nueva.setTamano(this.tamano);
-    nueva.setRango(this.rango);
-    nueva.setVelocidad(this.velocidad);
-    return nueva;
+    var nueva = new Criatura(this.x, this.y, this.tamano, this.velocidad, this.rango, this.mundo);
+    nueva.direccion=this.direccion + Math.PI
+    this.mundo.poblacion.push(nueva);
+  }
+
+  reset(){
+    this.comidas= 0;
   }
 }
 

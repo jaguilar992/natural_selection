@@ -24,13 +24,18 @@ const zeros = (m, n) => [...Array(n)].map(e => Array(m).fill(0));
 const control_poblacion_inicial = $("input[name='poblacion_inicial']");
 const control_produccion_alimentos = $("input[name='produccion_alimentos']");
 const control_velocidad_animacion = $("input[name='velocidad_animacion']");
+const control_velocidad_maxima = $("input[name='velocidad_maxima']");
+const control_tamano_maximo = $("input[name='tamano_maximo']");
+const control_rango_maximo = $("input[name='rango_maximo']");
+const control_mutacion = $("input[name='mutacion']");
+
 const label_poblacion_inicial = $("#valor_poblacion_inicial")
 const label_produccion_alimentos = $("#valor_producccion_alimentos");
 const label_velocidad_animacion = $("#valor_velocidad");
+const label_estado_simulacion = $("input[name='estado_simulacion']");
 const button_iniciar = $("button#button_iniciar");
 const button_detener = $("button#button_detener");
 const button_reiniciar = $("button#button_reiniciar");
-const label_estado_simulacion = $("input[name='estado_simulacion']");
 
 // Canvas
 const canvas = $("#mundo")[0];
@@ -46,14 +51,13 @@ const comida_tamano = rejilla_tamano/2; // NO MODIFICAR - MODIFICAR GRID_TAMANO
 const grid_border = rejilla_tamano/4;   // NO MODIFICAR - MODIFICAR GRID_TAMANO
 
 const criatura_tamano_min = 5;
-const criatura_tamano_max = 20;
-const dtamano = criatura_tamano_max - criatura_tamano_min;
-
 const criatura_velocidad_min = 10;
-const criatura_velocidad_max = 150;
-const dvelocidad = criatura_velocidad_min - criatura_velocidad_max;
-
 const criatura_rango_min =  1;
-const criatura_rango_max =  4;
-const drango = criatura_rango_min - criatura_rango_max;
 
+var mundo;
+var simulacion;
+
+var criatura_tamano_max ;
+var criatura_velocidad_max ;
+var criatura_rango_max ;
+const speed_color = ["#845EC2", "#D65DB1", "#FF6F91", "#FFC75F", "#F9F871"]

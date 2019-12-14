@@ -1,9 +1,10 @@
-.div-mundo, .div-controles{  
+.div-mundo{  
   height: 500px
 }
 
 .div-controles{
   border: 2px solid gray;
+  height: 500px
 }
 
 #mundo{
@@ -11,12 +12,12 @@
 }
 
 .div-controles .slider{
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   padding: 10px;
 }
 
 .div-controles #buttons{
-  margin-bottom: 70px;
+  
 }
 
 .div-mundo{

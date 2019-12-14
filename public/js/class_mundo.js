@@ -4,8 +4,8 @@ class Mundo{
     this.rejilla_alto  = h  // rejilla vertical
     this.ctx=ctx;
     this.comida_cantidad = n
-    this.grid = true;
-    this.vision = true;
+    this.grid = false;
+    this.vision = false;
     this.comida_mapa = zeros(this.rejilla_alto, this.rejilla_ancho);
     this.marcas = zeros(this.rejilla_alto, this.rejilla_ancho);
     this.poblacion = [];
@@ -62,9 +62,10 @@ class Mundo{
       var t = criatura.tamano;
       // Cuerpo
       ctx.beginPath();
-      ctx.fillStyle = '#FF70A0A0';
+      var color = speed_color[Math.floor((criatura.velocidad-10)/23.33)];
+      ctx.fillStyle = color + "A0";
       ctx.arc(x,y,t, 0, 2*Math.PI);
-      ctx.strokeStyle = "red";
+      ctx.strokeStyle = "gray";
       ctx.fill();
       ctx.stroke();
       // Destino - Vector
@@ -111,7 +112,7 @@ class Mundo{
     for (var i = 0; i < this.rejilla_ancho; i++) {
      for (var j = 0; j < this.rejilla_alto; j++) {
         if(this.marcas[i][j]==1){
-          ctx.fillStyle="#FFDD55A0";
+          ctx.fillStyle="#FFDD5590";
           ctx.fillRect(i*rejilla_tamano+1,j*rejilla_tamano+1,rejilla_tamano-2,rejilla_tamano-2);
         }
       }
