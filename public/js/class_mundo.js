@@ -62,10 +62,10 @@ class Mundo{
       var t = criatura.tamano;
       // Cuerpo
       ctx.beginPath();
-      var color = speed_color[Math.floor((criatura.velocidad-10)/23.33)];
-      ctx.fillStyle = color + "A0";
+      var color = "#e3404d";
+      ctx.fillStyle = color + "60";
       ctx.arc(x,y,t, 0, 2*Math.PI);
-      ctx.strokeStyle = "gray";
+      ctx.strokeStyle = "red";
       ctx.fill();
       ctx.stroke();
       // Destino - Vector

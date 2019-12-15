@@ -55,14 +55,15 @@ function correrSimulacion(numero_individuos, cantidad_comida){
   var  pop = new Poblacion(numero_individuos, mundo);
   mundo.setPoblacion(pop.getPoblacion());
   mundo.crecer_comida();
-
-
   mundo.dibujar();
+
+  crearNuevaSimulacion();
+
   const FRAME_RATE = 200;
   const dt = 1000/FRAME_RATE;
   const DAY_DURATION = 10; // En segundos
   var c=0;
-  var day = 1;
+  var dia = 1;
   simulacion = setInterval(function(){
     var ejecutar = label_estado_simulacion.val();
     if (ejecutar == 1){
@@ -74,12 +75,14 @@ function correrSimulacion(numero_individuos, cantidad_comida){
       if (c*velocidad_animacion%FRAME_RATE == 0){
         var time_step = c*velocidad_animacion/FRAME_RATE;
         if (time_step%DAY_DURATION == 0){
-          day++;
+          var idSimulacion = control_id_simulacion.val();
+          agregarASimulacion(idSimulacion, dia, mundo);
           mundo.poblacion = mundo.poblacion.filter(el=>el.comidas>=el.dieta)
           mundo.poblacion.map(el=>el.reset());
           mundo.poblacion.map(el=>el.reproducir());
           mundo.crecer_comida();
-          $("#dia_cuenta").html(day);
+          dia++;
+          $("#dia_cuenta").html(dia);
           $("#pop_cuenta").html(mundo.poblacion.length);
         }
       }
@@ -120,7 +123,7 @@ button_reiniciar.click(()=>{
   button_reiniciar.attr("disabled",true);
   button_detener.attr("disabled",true);
   button_iniciar.attr("disabled",false);
-  $("#dia_cuenta").html("0");
+  $("#dia_cuenta").html("1");
   $("#pop_cuenta").html("0");
   control_poblacion_inicial.prop("disabled", false);
   control_produccion_alimentos.prop("disabled", false);

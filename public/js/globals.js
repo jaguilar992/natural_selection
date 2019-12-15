@@ -28,6 +28,7 @@ const control_velocidad_maxima = $("input[name='velocidad_maxima']");
 const control_tamano_maximo = $("input[name='tamano_maximo']");
 const control_rango_maximo = $("input[name='rango_maximo']");
 const control_mutacion = $("input[name='mutacion']");
+const control_id_simulacion = $("input[name='id_simulacion']");
 
 const label_poblacion_inicial = $("#valor_poblacion_inicial")
 const label_produccion_alimentos = $("#valor_producccion_alimentos");
