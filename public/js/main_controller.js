@@ -57,7 +57,7 @@ function correrSimulacion(numero_individuos, cantidad_comida){
   mundo.crecer_comida();
   mundo.dibujar();
 
-  crearNuevaSimulacion();
+  //crearNuevaSimulacion();
 
   const FRAME_RATE = 200;
   const dt = 1000/FRAME_RATE;
@@ -76,14 +76,34 @@ function correrSimulacion(numero_individuos, cantidad_comida){
         var time_step = c*velocidad_animacion/FRAME_RATE;
         if (time_step%DAY_DURATION == 0){
           var idSimulacion = control_id_simulacion.val();
-          agregarASimulacion(idSimulacion, dia, mundo);
+          $("#dia_cuenta").html(dia);
+          $("#pop_cuenta").html(mundo.poblacion.length);
+          var pobl =  mundo.poblacion.length;
+          var velo =  mundo.poblacion.map(el=>el.velocidad).reduce((a,n)=>a+n)/pobl;
+          var tama =  mundo.poblacion.map(el=>el.tamano).reduce((a,n)=>a+n)/pobl;
+          var rango = mundo.poblacion.map(el=>el.rango).reduce((a,n)=>a+n)/pobl;
+
+          poblacionGraph.data.labels.push(dia);
+          poblacionGraph.data.datasets[0].data.push(pobl);
+          poblacionGraph.update();
+
+          velocidadGraph.data.labels.push(dia);
+          velocidadGraph.data.datasets[0].data.push(velo);
+          velocidadGraph.update();
+
+          tamanoGraph.data.labels.push(dia);
+          tamanoGraph.data.datasets[0].data.push(tama);
+          tamanoGraph.update();
+
+          rangoGraph.data.labels.push(dia);
+          rangoGraph.data.datasets[0].data.push(rango);
+          rangoGraph.update();
+          
           mundo.poblacion = mundo.poblacion.filter(el=>el.comidas>=el.dieta)
           mundo.poblacion.map(el=>el.reset());
           mundo.poblacion.map(el=>el.reproducir());
           mundo.crecer_comida();
           dia++;
-          $("#dia_cuenta").html(dia);
-          $("#pop_cuenta").html(mundo.poblacion.length);
         }
       }
     }
@@ -134,6 +154,15 @@ button_reiniciar.click(()=>{
 
   mundo.clear()
   label_estado_simulacion.val(0);
+  poblacionGraph.reset();
+  poblacionGraph.data.labels = [];
+  velocidadGraph.reset();
+  velocidadGraph.data.labels = [];
+  tamanoGraph.reset();
+  tamanoGraph.data.labels = [];
+  rangoGraph.reset();
+  rangoGraph.data.labels = [];
+
 });
 
 button_detener.click(()=>{
