@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Selección Natural - Simulador</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Selección Natural</h1>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-8 div-mundo">
+          <canvas id="mundo" height="500px" width="700px"></canvas>
+          <div class="row">
+            <p><b>Día: <span id="dia_cuenta">1</span></b></p>
+            <p><b>Población: <span id="pop_cuenta">0</span></b></p>
+          </div>
+        </div>
+        <div class="col-md-4 div-controles">
+          <div class="row">
+            <div class="col-md-12">
+              <h2>Controles</h2>
+            </div>
+            <input type="hidden" name="id_simulacion" value="0">
+            <div class="row slider">
+              <div class="col-md-12">
+                <label for="control-">Población Inicial:</label>
+                <div class="col-md-12">
+                  <div class="col-md-8">
+                    <input type="range" name="poblacion_inicial" value="50" min="1" max="100">
+                  </div>
+                  <div class="col-md-4">
+                    <span id="valor_poblacion_inicial"></span>&nbsp;<span>indv.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row slider">              
+              <div class="col-md-12">
+                <h4>Características individuos</h4>
+                <div class="col-md-4">
+                  <label for="">Velocidad</label>
+                  <div class="col-md-12">
+                    <input type="number" name="velocidad_maxima" value="120" min="10" max="150" step="10">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label for="">Tamaño</label>
+                  <div class="col-md-12">
+                    <input type="number" name="tamano_maximo" value="15" min="5" max="20">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label for="">Rango visión</label>
+                  <div class="col-md-12">
+                    <input type="number" name="rango_maximo" value="2" min="1" max="4">
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row slider">
+              <div class="col-md-12">
+                <label for="control-">Producción de alimentos:</label>
+                <div class="col-md-12">
+                  <div class="col-md-8">
+                    <input type="range" name="produccion_alimentos" value="100" min="1" max="200"> 
+                  </div>
+                  <div class="col-md-4">
+                    <span id="valor_producccion_alimentos"></span>&nbsp<span>u/dia</span>
+                  </div>
+                </div>
+              </div>
+            </div>            
+
+            <div class="row slider">
+              <div class="col-md-12">
+                <label for="control-">Velocidad de animación</label>
+                <div class="col-md-12">
+                  <div class="col-md-8">
+                    <input type="range" name="velocidad_animacion" value="1" min="1" max="5" step="4">
+                  </div>
+                  <div class="col-md-4">
+                    <!-- <span>1:</span>&nbsp; --><span id="valor_velocidad"></span>&nbsp
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" id="buttons">
+              <div class="col-md-12">
+                <div class="col-md-4">
+                  <button class="btn btn-default btn-block" id="button_reiniciar">
+                    Detener
+                  </button>
+                </div>
+                <div class="col-md-4">
+                  <input type="hidden" name="estado_simulacion" value="0">
+                  <button class="btn btn-default btn-block" id="button_detener">
+                    Pausar
+                  </button>
+                </div>
+                <div class="col-md-4">
+                  <button class="btn btn-primary btn-block" id="button_iniciar">
+                    Iniciar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1>Estadísticas</h1>
+    <div class="col-md-3">
+      <h2>Población</h2>
+      <canvas id="poblacion" style = "height: 250px; width: 250px" ></canvas>
+    </div>
+    <div class="col-md-3">
+      <h2>Velocidad</h2>
+      <canvas id="velocidad" style = "height: 250px; width: 250px" ></canvas>
+    </div>
+    <div class="col-md-3">
+      <h2>Tamaño</h2>
+      <canvas id="tamano" style = "height: 250px; width: 250px" ></canvas>
+    </div>
+    <div class="col-md-3">
+      <h2>Rango de Visión</h2>
+      <canvas id="rango" style = "height: 250px; width: 250px" ></canvas>
+    </div>
+  </div>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script src="js/globals.js"></script>
+  <script src="js/class_criatura.js"></script>
+  <script src="js/class_poblacion.js"></script>
+  <script src="js/class_mundo.js"></script>
+  <script src="js/graph.js"></script>
+  <script src="js/ajax.js"></script>
+  <script src="js/main_controller.js"></script>
+</body>
+</html>
+
