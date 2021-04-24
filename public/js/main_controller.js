@@ -98,7 +98,7 @@ function correrSimulacion(numero_individuos, cantidad_comida){
           rangoGraph.data.labels.push(dia);
           rangoGraph.data.datasets[0].data.push(rango);
           rangoGraph.update();
-          
+
           mundo.poblacion = mundo.poblacion.filter(el=>el.comidas>=el.dieta)
           mundo.poblacion.map(el=>el.reset());
           mundo.poblacion.map(el=>el.reproducir());

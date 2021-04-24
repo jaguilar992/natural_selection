@@ -62,7 +62,9 @@ class Mundo{
       var t = criatura.tamano;
       // Cuerpo
       ctx.beginPath();
-      var color = "#e3404d";
+      const dv = Math.floor((criatura_velocidad_max - criatura_tamano_min) / 5);
+      const ic = Math.floor(criatura.velocidad / dv);
+      var color = speed_color[ic];
       ctx.fillStyle = color + "60";
       ctx.arc(x,y,t, 0, 2*Math.PI);
       ctx.strokeStyle = "red";

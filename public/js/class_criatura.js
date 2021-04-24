@@ -187,7 +187,18 @@ class Criatura{
   }
 
   reproducir () {
-    var nueva = new Criatura(this.x, this.y, this.tamano, this.velocidad, this.rango, this.mundo);
+    var g = Math.random()*0.1
+    var sgn = Math.floor(Math.random()*2) == 1 ? 1: -1;
+    console.log(sgn);
+    console.log(this.tamano, this.tamano + this.tamano*g*sgn);
+    var nueva = new Criatura(
+      this.x,
+      this.y,
+      this.tamano + this.tamano*g*sgn,
+      this.velocidad + this.velocidad*g*sgn,
+      this.rango,
+      this.mundo
+      );
     nueva.direccion=this.direccion + Math.PI
     this.mundo.poblacion.push(nueva);
   }
